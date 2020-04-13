@@ -1,0 +1,50 @@
+<div class="container"> 
+  <%= form_with(model: coin, local: true) do |form| %>
+    <% if coin.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(coin.errors.count, "error") %> prohibited this coin from being saved:</h2>
+
+        <ul>
+        <% coin.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="form-group col-6">
+        <%= form.label :description %>
+        <%= form.text_field :description, class:"form-control", placeholder:"Ex.: Bitcoin..." %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-6">
+        <%= form.label :acronym %>
+        <%= form.text_field :acronym, class:"form-control", placeholder:"Ex.: BTC..." %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-6">
+        <%= form.label :url_image %>
+        <%= form.text_field :url_image, class:"form-control", placeholder:"Ex.: http://image..." %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-3">
+        <%= form.label :mining_type_id %>
+        <%= form.select("mining_type_id", @mining_type_options, {include_blank: "Selecione..."}, class:"form-control") %>
+      </div>
+    </div>
+
+    <div class="center">
+      <div class="actions">
+        <%= form.submit nil, class:"btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+
+  <br>
+</div>
